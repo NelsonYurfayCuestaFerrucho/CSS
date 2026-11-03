@@ -1,30 +1,26 @@
-
 body {
     font-family: sans-serif;
     color: #333333;
 }
 
-body {
-    font-family: sans-serif;
-    color: #333333;
+/* Zonas: selectores planos de etiquetas */
+header nav a {
+    color: #1a73e8;
 }
 
-header nav ul li a {
-    color: #1a73e8; 
+aside a {
+    color: #2e7d32;
 }
 
-aside ul li a {
-    color: #2e7d32; 
+footer a {
+    color: #c62828;
 }
 
-footer ul li a {
-    color: #c62828; 
-}
-
-#btn-destacado {
-    color: red;
-}
-
+/* Botones de compra: base primero, modificador después */
 .btn-comprar {
     color: green;
+}
+
+.btn-destacado {
+    color: red;
 }
