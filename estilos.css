@@ -45,4 +45,5 @@ footer {
 /* Tarjetas de producto: espacio interno en todos los lados */
 article {
     padding: 20px;
+    margin: 15px;
 }
