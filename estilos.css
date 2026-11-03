@@ -24,3 +24,20 @@ footer a {
 .btn-destacado {
     color: red;
 }
+
+/* Momento 2*/
+header {
+    background-color: #e3f2fd; /* azul claro */
+}
+
+main {
+    background-color: #fff8e1; /* amarillo claro */
+}
+
+aside {
+    background-color: #e8f5e9; /* verde claro */
+}
+
+footer {
+    background-color: #ffebee; /* rojo claro */
+}
