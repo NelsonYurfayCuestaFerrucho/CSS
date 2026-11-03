@@ -49,7 +49,7 @@ Se eliminó el `#id` y se pasó a un sistema plano de etiquetas y clases, sin `!
 ## Herencia
 
 `font-family` y `color` se declaran solo en `body`. Los `h2`, `p` y `li` los heredan automáticamente. Los enlaces `<a>` tienen su propio color por zona.
-## Hallazgos: El Modelo de Caja
+# Hallazgos: El Modelo de Caja
 
 Todo elemento HTML es una caja con cuatro capas, de adentro hacia afuera: **contenido → padding → border → margin**. En la tienda trabajé estas capas sobre los `<article>` (las tarjetas de producto) con esta regla:
 
