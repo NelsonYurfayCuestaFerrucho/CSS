@@ -1,0 +1,26 @@
+body {
+    font-family: sans-serif;
+    color: #333333;
+}
+
+/* Zonas: selectores planos de etiquetas */
+header nav a {
+    color: #1a73e8;
+}
+
+aside a {
+    color: #2e7d32;
+}
+
+footer a {
+    color: #c62828;
+}
+
+/* Botones de compra: base primero, modificador después */
+.btn-comprar {
+    color: green;
+}
+
+.btn-destacado {
+    color: red;
+}
