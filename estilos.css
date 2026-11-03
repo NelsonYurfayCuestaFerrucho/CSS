@@ -1,3 +1,30 @@
-body  {
-    background-color: #ff0000;
+
+body {
+    font-family: sans-serif;
+    color: #333333;
+}
+
+body {
+    font-family: sans-serif;
+    color: #333333;
+}
+
+header nav ul li a {
+    color: #1a73e8; 
+}
+
+aside ul li a {
+    color: #2e7d32; 
+}
+
+footer ul li a {
+    color: #c62828; 
+}
+
+#btn-destacado {
+    color: red;
+}
+
+.btn-comprar {
+    color: green;
 }
