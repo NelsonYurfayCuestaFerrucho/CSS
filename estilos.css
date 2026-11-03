@@ -1,38 +1,21 @@
+/* ==========================================
+   1. BASE
+   ========================================== */
 body {
     font-family: sans-serif;
     color: #333333;
 }
 
-/* Zonas: selectores planos de etiquetas */
-header nav a {
-    color: #1a73e8;
-}
-
-aside a {
-    color: #2e7d32;
-}
-
-footer a {
-    color: #c62828;
-}
-
-/* Botones de compra: base primero, modificador después */
-.btn-comprar {
-    color: green;
-}
-
-.btn-destacado {
-    color: red;
-}
-
-/* Momento 2*/
+/* ==========================================
+   2. SUPERCAJAS (áreas principales)
+   ========================================== */
 header {
-    background-color: #e3f2fd;
-    background-image: url('img/img1.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 20px 0;
+    background-color: #e3f2fd;              /* respaldo si la imagen no carga */
+    background-image: url('img/img1.png');  /* imagen del banner */
+    background-size: cover;                 /* llena el header sin deformarse */
+    background-position: center;            /* recorte desde el centro */
+    background-repeat: no-repeat;           /* evita que se repita */
+    padding: 10px 0;                        /* espacio arriba y abajo */
 }
 
 main {
@@ -47,8 +30,51 @@ footer {
     background-color: #ffebee; /* rojo claro */
 }
 
-/* Tarjetas de producto: espacio interno en todos los lados */
+/* ==========================================
+   3. MENÚ DE NAVEGACIÓN
+   ========================================== */
+header nav li {
+    display: inline-block;  /* opciones en una sola fila */
+    margin-right: 30px;     /* separación entre opciones */
+    margin-top: 100px;      /* baja las opciones dentro del banner */
+}
+
+header nav a {
+    color: #ffffff;         /* letra blanca sobre el fondo negro */
+}
+
+/* ==========================================
+   4. PRODUCTOS
+   ========================================== */
+section {
+    display: flex;
+    flex-direction: row;    /* tarjetas una al lado de la otra */
+    flex-wrap: wrap;        /* si no caben, bajan a otra fila */
+}
+
 article {
-    padding: 20px;
-    margin: 15px;
+    padding: 20px;                 /* espacio interno */
+    margin: 15px;                  /* espacio externo */
+    flex: 1 1 200px;               /* crece, se encoge y parte de 200px de ancho */
+    border: 2px solid #d4a62a;     /* borde dorado de 2px */
+}
+
+/* Botones de compra: base primero, modificador después */
+.btn-comprar {
+    color: green;
+}
+
+.btn-destacado {
+    color: red;
+}
+
+/* ==========================================
+   5. ENLACES DE ASIDE Y FOOTER
+   ========================================== */
+aside a {
+    color: #2e7d32;
+}
+
+footer a {
+    color: #c62828;
 }
