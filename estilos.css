@@ -27,7 +27,12 @@ footer a {
 
 /* Momento 2*/
 header {
-    background-color: #e3f2fd; /* azul claro */
+    background-color: #e3f2fd;
+    background-image: url('img/img1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 20px 0;
 }
 
 main {
