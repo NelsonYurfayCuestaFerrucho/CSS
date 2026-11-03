@@ -41,3 +41,8 @@ aside {
 footer {
     background-color: #ffebee; /* rojo claro */
 }
+
+/* Tarjetas de producto: espacio interno en todos los lados */
+article {
+    padding: 20px;
+}
