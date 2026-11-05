@@ -1,80 +1,83 @@
-/* ==========================================
-   1. BASE
-   ========================================== */
-body {
-    font-family: sans-serif;
-    color: #333333;
+:root {
+    --color-primario: #d4a62a;
+    --color-secundario: #2e7d32;
+    --color-acento: #c62828;
+    --color-texto: #333333;
+    --color-texto-claro: #ffffff;
+    --color-fondo-header: #e3f2fd;
+    --color-fondo-main: #fff8e1;
+    --color-fondo-aside: #e8f5e9;
+    --color-fondo-footer: #ffebee;
+
+    --fuente-principal: 'Poppins', sans-serif;
+
+    --espaciado-pequeno: 8px;
+    --espaciado-medio: 16px;
+    --espaciado-grande: 24px;
+    --espaciado-menu: 100px;
 }
 
-/* ==========================================
-   2. SUPERCAJAS (áreas principales)
-   ========================================== */
+body {
+    font-family: var(--fuente-principal);
+    color: var(--color-texto);
+}
+
 header {
-    background-color: #e3f2fd;              /* respaldo si la imagen no carga */
-    background-image: url('img/img1.png');  /* imagen del banner */
-    background-size: cover;                 /* llena el header sin deformarse */
-    background-position: center;            /* recorte desde el centro */
-    background-repeat: no-repeat;           /* evita que se repita */
-    padding: 10px 0;                        /* espacio arriba y abajo */
+    background-color: var(--color-fondo-header);
+    background-image: url('img/img1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: var(--espaciado-pequeno) 0;
 }
 
 main {
-    background-color: #fff8e1; /* amarillo claro */
+    background-color: var(--color-fondo-main);
 }
 
 aside {
-    background-color: #e8f5e9; /* verde claro */
+    background-color: var(--color-fondo-aside);
 }
 
 footer {
-    background-color: #ffebee; /* rojo claro */
+    background-color: var(--color-fondo-footer);
 }
 
-/* ==========================================
-   3. MENÚ DE NAVEGACIÓN
-   ========================================== */
 header nav li {
-    display: inline-block;  /* opciones en una sola fila */
-    margin-right: 30px;     /* separación entre opciones */
-    margin-top: 100px;      /* baja las opciones dentro del banner */
+    display: inline-block;
+    margin-right: var(--espaciado-grande);
+    margin-top: var(--espaciado-menu);
 }
 
 header nav a {
-    color: #ffffff;         /* letra blanca sobre el fondo negro */
+    color: var(--color-texto-claro);
 }
 
-/* ==========================================
-   4. PRODUCTOS
-   ========================================== */
 section {
     display: flex;
-    flex-direction: row;    /* tarjetas una al lado de la otra */
-    flex-wrap: wrap;        /* si no caben, bajan a otra fila */
+    flex-direction: row;
+    flex-wrap: wrap;
 }
 
 article {
-    padding: 20px;                 /* espacio interno */
-    margin: 15px;                  /* espacio externo */
-    flex: 1 1 200px;               /* crece, se encoge y parte de 200px de ancho */
-    border: 2px solid #d4a62a;     /* borde dorado de 2px */
+    padding: var(--espaciado-grande);
+    margin: var(--espaciado-medio);
+    flex: 1 1 200px;
+    border: 2px solid var(--color-primario);
 }
 
-/* Botones de compra: base primero, modificador después */
 .btn-comprar {
-    color: green;
+    color: var(--color-secundario);
 }
 
 .btn-destacado {
-    color: red;
+    color: var(--color-acento);
 }
 
-/* ==========================================
-   5. ENLACES DE ASIDE Y FOOTER
-   ========================================== */
 aside a {
-    color: #2e7d32;
+    color: var(--color-secundario);
 }
 
 footer a {
-    color: #c62828;
+    color: var(--color-acento);
 }
