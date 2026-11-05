@@ -1,15 +1,15 @@
 :root {
-    --color-primario: #d4a62a;
-    --color-secundario: #2e7d32;
-    --color-acento: #c62828;
+    --color-primario: #131313;
+    --color-secundario: #000000;
+    --color-acento: #f7aa03;
     --color-texto: #333333;
     --color-texto-claro: #ffffff;
-    --color-fondo-header: #e3f2fd;
-    --color-fondo-main: #fff8e1;
-    --color-fondo-aside: #e8f5e9;
-    --color-fondo-footer: #ffebee;
+    --color-fondo-header: #ffc457;
+    --color-fondo-main: #ffffff69;
+    --color-fondo-aside: #fceaba;
+    --color-fondo-footer: #fcf0d1;
 
-    --fuente-principal: 'Poppins', sans-serif;
+    --fuente-principal: "Poppins", sans-serif;
 
     --espaciado-pequeno: 8px;
     --espaciado-medio: 16px;
@@ -17,67 +17,284 @@
     --espaciado-menu: 100px;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: var(--fuente-principal);
     color: var(--color-texto);
+    margin: 0;
 }
 
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* ---------- HEADER ---------- */
 header {
     background-color: var(--color-fondo-header);
-    background-image: url('img/img1.png');
+    background-image: url("img/img1.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: var(--espaciado-pequeno) 0;
+    padding: var(--espaciado-pequeno) var(--espaciado-grande);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 190px;
 }
 
-main {
-    background-color: var(--color-fondo-main);
-}
-
-aside {
-    background-color: var(--color-fondo-aside);
-}
-
-footer {
-    background-color: var(--color-fondo-footer);
+header nav ul {
+    display: flex;
+    justify-content: center;
+    gap: var(--espaciado-grande);
+    margin: 0;
 }
 
 header nav li {
-    display: inline-block;
-    margin-right: var(--espaciado-grande);
-    margin-top: var(--espaciado-menu);
+    margin: 0;
 }
 
 header nav a {
     color: var(--color-texto-claro);
+    font-weight: 600;
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.2s;
 }
 
-section {
+header nav a:hover {
+    border-bottom-color: var(--color-primario);
+}
+
+/* ---------- LAYOUT: aside + main ---------- */
+.contenedor {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    align-items: flex-start;
 }
 
-article {
+aside {
+    background-color: var(--color-fondo-aside);
+    width: 220px;
+    flex-shrink: 0;
     padding: var(--espaciado-grande);
-    margin: var(--espaciado-medio);
-    flex: 1 1 200px;
-    border: 2px solid var(--color-primario);
+    min-height: 100vh;
 }
 
-.btn-comprar {
-    color: var(--color-secundario);
+aside h2 {
+    font-size: 1.1rem;
+    margin-top: 0;
+    border-bottom: 2px solid var(--color-secundario);
+    padding-bottom: var(--espaciado-pequeno);
 }
 
-.btn-destacado {
-    color: var(--color-acento);
+aside li {
+    margin-bottom: var(--espaciado-pequeno);
 }
 
 aside a {
+    display: block;
     color: var(--color-secundario);
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+aside a:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-texto-claro);
+}
+
+main {
+    background-color: var(--color-fondo-main);
+    flex: 1;
+    padding: var(--espaciado-grande);
+    min-height: 100vh;
+}
+
+/* ---------- PRODUCTOS (cuadrícula) ---------- */
+section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: var(--espaciado-grande);
+}
+
+article {
+    background-color: var(--color-texto-claro);
+    padding: var(--espaciado-grande);
+    border: 2px solid var(--color-primario);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+article:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+article h2 {
+    margin: var(--espaciado-pequeno) 0;
+    font-size: 1.2rem;
+}
+
+article p {
+    margin: 4px 0;
+    font-size: 0.9rem;
+}
+
+/* Categoría como etiqueta (primer <p>) */
+article p:first-of-type {
+    align-self: flex-start;
+    background-color: var(--color-secundario);
+    color: var(--color-texto-claro);
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+}
+
+/* Precio destacado (último <p>) */
+article p:last-of-type {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--color-acento);
+    margin-top: auto; /* empuja precio + botón al fondo de la tarjeta */
+    padding-top: var(--espaciado-medio);
+}
+
+/* ---------- BOTONES ---------- */
+.btn-comprar {
+    display: block;
+    text-align: center;
+    margin-top: var(--espaciado-medio);
+    padding: 10px;
+    background-color: var(--color-secundario);
+    color: var(--color-texto-claro);
+    font-weight: 600;
+    border-radius: 8px;
+    transition: opacity 0.2s;
+}
+
+.btn-comprar:hover {
+    opacity: 0.85;
+}
+
+.btn-destacado {
+    background-color: var(--color-acento);
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+    background-color: var(--color-fondo-footer);
+    text-align: center;
+    padding: var(--espaciado-grande);
+}
+
+footer li {
+    display: inline-block;
+    margin: 0 var(--espaciado-medio);
 }
 
 footer a {
     color: var(--color-acento);
+    font-weight: 600;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 700px) {
+    .contenedor {
+        flex-direction: column;
+    }
+    aside {
+        width: 100%;
+        min-height: auto;
+    }
+}
+
+/* ================= SUBACTIVIDAD 4: INTERACTIVIDAD ================= */
+
+/* ---------- ASIDE: :hover, ::before y :focus ---------- */
+aside a {
+    transition:
+        background-color 0.3s,
+        color 0.3s;
+}
+
+/* Pseudoelemento: viñeta antes de cada categoría */
+aside a::before {
+    content: "• ";
+    color: var(--color-primario);
+    font-weight: 600;
+}
+
+/* Pseudoclase :hover */
+aside a:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-texto-claro);
+}
+
+/* Pseudoclase :focus (navegación con Tab) */
+aside a:focus {
+    outline: 3px solid var(--color-secundario);
+    outline-offset: 2px;
+}
+
+/* ---------- BOTONES: :hover y :active ---------- */
+.btn-comprar {
+    transition:
+        background-color 0.2s,
+        transform 0.1s,
+        box-shadow 0.1s;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.btn-comprar:hover {
+    background-color: var(--color-primario);
+    opacity: 1;
+}
+
+.btn-comprar:active {
+    transform: translateY(3px); /* efecto de hundimiento */
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.btn-destacado:hover {
+    background-color: var(--color-texto);
+}
+
+/* ---------- TARJETAS: ::after (insignias) ---------- */
+article {
+    position: relative; /* para ubicar la insignia en la esquina */
+}
+
+article::after {
+    content: "¡Oferta!";
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: var(--color-acento);
+    color: var(--color-secundario); /* mejor contraste sobre el amarillo */
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+}
+
+/* Una tarjeta con insignia diferente */
+article:nth-child(2)::after {
+    content: "Nuevo";
+    background-color: var(--color-secundario);
+    color: var(--color-texto-claro); /* texto claro sobre fondo negro */
 }

@@ -151,3 +151,43 @@ Antes, cada selector tenía su propio número (30px, 20px, 15px, 10px...). Eran 
 ### 3. Cómo la centralización previene colisiones visuales
 
 Cuando la hoja de estilos crece, es fácil que aparezcan versiones ligeramente distintas de un mismo color (por ejemplo, dos verdes parecidos en el `aside` y en un botón) o espaciados que no coinciden entre secciones. Al declarar cada valor una sola vez en `:root`, todos los selectores leen la misma fuente de verdad, por lo que no puede haber dos tonos o medidas "casi iguales" por descuido. Si un color o espacio cambia, se modifica en un único lugar y el cambio se refleja de forma uniforme en toda la página, sin dejar elementos con valores viejos. Esto facilita el mantenimiento y evita que el diseño se desordene a medida que se agregan nuevos estilos.
+
+
+# Hallazgos: Pseudoclases y Pseudoelementos
+
+En esta subactividad le di interactividad y decoración visual al Catálogo de Productos usando solo CSS, sin modificar el archivo HTML. Trabajé en la rama `feature/interactividad-css` para no afectar la versión estable del proyecto.
+
+### 1. Diferencia funcional entre pseudoclase y pseudoelemento
+
+**Pseudoclase (reacción a eventos o estados):**
+Una pseudoclase selecciona un elemento que ya existe en el HTML, pero solo mientras se encuentra en un estado determinado. El navegador escucha las acciones del usuario y activa o desactiva el estilo automáticamente. En el proyecto usé tres:
+- `:hover`: se activa cuando el cursor pasa por encima. En el `<aside>`, el enlace cambia su fondo a verde y su texto a blanco con una transición suave de 0.3 s. En los botones "Comprar", el fondo cambia al color primario.
+- `:active`: se activa mientras el usuario mantiene presionado el clic. En los botones aplicé `transform: translateY(3px)` y reduje la sombra para simular que el botón se hunde.
+- `:focus`: se activa cuando el elemento recibe el foco con el teclado (tecla Tab). En los enlaces del `<aside>` muestra un contorno con `outline: 3px solid var(--color-secundario)`.
+
+**Pseudoelemento (inyección de contenido virtual):**
+Un pseudoelemento no depende de un evento. Crea una parte virtual dentro del elemento, antes (`::before`) o después (`::after`) de su contenido, y se muestra con la propiedad `content`. Ese contenido existe en el DOM virtual del navegador, pero no en el archivo HTML. En el proyecto usé:
+- `aside a::before` con `content: "• "` para poner una viñeta dorada antes de cada categoría.
+- `article::after` con `content: "¡Oferta!"` para crear una insignia roja en la esquina de cada tarjeta, y `article:nth-child(2)::after` con `content: "Nuevo"` para que la segunda tarjeta tenga una insignia verde distinta.
+
+**En resumen:** la pseudoclase cambia **cómo se ve** un elemento existente según su estado, y el pseudoelemento **agrega** una pieza visual que no está en el HTML.
+
+### 2. Importancia técnica de `:focus` para la accesibilidad web
+
+No todos los usuarios navegan con mouse. Personas con discapacidad motriz, personas con baja visión que usan lectores de pantalla y usuarios que simplemente prefieren el teclado se mueven por la página con la tecla Tab, que va saltando de un enlace o botón al siguiente. Para ellos, el único indicador de "en qué parte de la página estoy" es el contorno que muestra `:focus`.
+
+Si ese contorno se elimina o es muy tenue, el usuario pierde la ubicación y no sabe qué enlace activará al presionar Enter. Por eso las pautas de accesibilidad web (WCAG) exigen que el foco del teclado sea visible. En mi proyecto personalicé el contorno con la variable `--color-secundario`, y agregué `outline-offset: 2px` para separarlo del enlace y que se vea con claridad. Así cada categoría del menú lateral se identifica sin ambigüedad al navegar con Tab.
+
+### 3. Por qué es buena práctica decorar con `::before` y `::after`
+
+- **HTML limpio y semántico:** el HTML debe contener solo contenido con significado (títulos, párrafos, enlaces). Si agregara etiquetas como `<span class="insignia"></span>` solo para decorar, mezclaría estructura con presentación.
+- **Mantenimiento más fácil:** si quiero cambiar el texto de una insignia, su color o la viñeta del menú, lo hago en un solo lugar del CSS, sin editar cada tarjeta o cada enlace del HTML.
+- **Reutilización:** una sola regla como `aside a::before` decora todas las categorías, incluso las que agregue en el futuro.
+- **Mejor accesibilidad:** los elementos decorativos no se convierten en nodos vacíos que un lector de pantalla pueda leer sin aportar información.
+- **Separación de responsabilidades:** el HTML define la estructura y el CSS define la apariencia, que es el principio que seguimos en todo el proyecto.
+
+### 4. Auditoría con DevTools
+
+Con las herramientas de desarrollador del navegador inspeccioné los enlaces del `<aside>` y los botones de las tarjetas. En el panel *Styles* abrí la opción **:hov** y forcé los estados `:hover`, `:active` y `:focus`, y comprobé que los estilos cambiaban como esperaba. También verifiqué que los bloques `::before` y `::after` aparecen en el árbol del DOM del navegador aunque no existen en el archivo HTML, lo que confirma que son contenido virtual inyectado desde CSS.
+
+
