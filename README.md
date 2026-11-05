@@ -49,6 +49,8 @@ Se eliminó el `#id` y se pasó a un sistema plano de etiquetas y clases, sin `!
 ## Herencia
 
 `font-family` y `color` se declaran solo en `body`. Los `h2`, `p` y `li` los heredan automáticamente. Los enlaces `<a>` tienen su propio color por zona.
+
+
 # Hallazgos: El Modelo de Caja
 
 Todo elemento HTML es una caja con cuatro capas, de adentro hacia afuera: **contenido → padding → border → margin**. En la tienda trabajé estas capas sobre los `<article>` (las tarjetas de producto) con esta regla:
@@ -111,3 +113,41 @@ Hallazgos concretos de mi proyecto:
 ### Conclusión
 
 El padding protege el contenido, el margin organiza las cajas entre sí, y `border-box` hace que los tamaños que escribo sean los que realmente se ven. Entender estas tres cosas me permite predecir el espacio que ocupa cada elemento en lugar de ajustar a prueba y error.
+
+
+# Hallazgos: Centralización de Identidad Visual y Espaciado
+
+### 1. Variables declaradas en `:root`
+
+**Colores**
+
+| Variable | Valor | Uso |
+|---|---|---|
+| `--color-primario` | `#d4a62a` | Borde dorado de las tarjetas (`article`) |
+| `--color-secundario` | `#2e7d32` | Enlaces del `aside` y botón `.btn-comprar` |
+| `--color-acento` | `#c62828` | Enlaces del `footer` y botón `.btn-destacado` |
+| `--color-texto` | `#333333` | Color de texto base del `body` |
+| `--color-texto-claro` | `#ffffff` | Enlaces del menú sobre el banner |
+| `--color-fondo-header` | `#e3f2fd` | Fondo de respaldo del `header` |
+| `--color-fondo-main` | `#fff8e1` | Fondo del `main` |
+| `--color-fondo-aside` | `#e8f5e9` | Fondo del `aside` |
+| `--color-fondo-footer` | `#ffebee` | Fondo del `footer` |
+
+**Espaciados**
+
+| Variable | Valor | Uso |
+|---|---|---|
+| `--espaciado-pequeno` | `8px` | Padding vertical del `header` |
+| `--espaciado-medio` | `16px` | Margen externo de las tarjetas |
+| `--espaciado-grande` | `24px` | Padding de las tarjetas y separación entre opciones del menú |
+| `--espaciado-menu` | `100px` | Margen superior que baja el menú dentro del banner |
+
+**Tipografía:** `--fuente-principal` (`'Poppins', sans-serif`), cargada desde Google Fonts en el `<head>`.
+
+### 2. Ventaja de reutilizar medidas de margen y relleno
+
+Antes, cada selector tenía su propio número (30px, 20px, 15px, 10px...). Eran valores sueltos que no seguían ninguna lógica y que había que recordar o buscar uno por uno. Con una escala de tokens (8, 16 y 24px) todo el diseño usa las mismas proporciones, así que las tarjetas y secciones tienen el mismo "aire" y se ven ordenadas y consistentes. Además, si queremos que la página sea más espaciosa o más compacta, cambiamos un solo valor en `:root` y todo se ajusta, en lugar de editar muchos selectores. También se escribe menos código y se reducen los errores de digitación.
+
+### 3. Cómo la centralización previene colisiones visuales
+
+Cuando la hoja de estilos crece, es fácil que aparezcan versiones ligeramente distintas de un mismo color (por ejemplo, dos verdes parecidos en el `aside` y en un botón) o espaciados que no coinciden entre secciones. Al declarar cada valor una sola vez en `:root`, todos los selectores leen la misma fuente de verdad, por lo que no puede haber dos tonos o medidas "casi iguales" por descuido. Si un color o espacio cambia, se modifica en un único lugar y el cambio se refleja de forma uniforme en toda la página, sin dejar elementos con valores viejos. Esto facilita el mantenimiento y evita que el diseño se desordene a medida que se agregan nuevos estilos.
