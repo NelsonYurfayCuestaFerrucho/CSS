@@ -191,3 +191,28 @@ Si ese contorno se elimina o es muy tenue, el usuario pierde la ubicación y no 
 Con las herramientas de desarrollador del navegador inspeccioné los enlaces del `<aside>` y los botones de las tarjetas. En el panel *Styles* abrí la opción **:hov** y forcé los estados `:hover`, `:active` y `:focus`, y comprobé que los estilos cambiaban como esperaba. También verifiqué que los bloques `::before` y `::after` aparecen en el árbol del DOM del navegador aunque no existen en el archivo HTML, lo que confirma que son contenido virtual inyectado desde CSS.
 
 
+# Hallazgos: Arquitectura BEM y Modularidad
+
+### 1. ¿Qué significa BEM y cómo se escribe visualmente?
+
+BEM es la sigla de **Block, Element, Modifier** (Bloque, Elemento, Modificador). Es una metodología para nombrar las clases de CSS de forma ordenada, de manera que con solo leer el nombre de una clase se entienda a qué componente pertenece y qué papel cumple dentro de él.
+
+Visualmente se escribe con la estructura `bloque__elemento--modificador`. El **bloque** es un componente que puede existir por sí solo, como `card`, `btn` o `sidebar`. El **elemento** es una parte interna de ese bloque y se separa con doble guion bajo (`__`), por ejemplo `card__title` o `card__price`. El **modificador** es una variante visual del bloque o del elemento y se separa con doble guion medio (`--`), por ejemplo `card--destacada` o `btn--secundario`.
+
+En el HTML el modificador siempre acompaña a la clase base, porque la base define el estilo general y el modificador solo cambia lo que es distinto:
+
+`<a href="#" class="btn btn--secundario">Comprar</a>`
+
+### 2. ¿Por qué dividir el CSS en varios archivos facilita el trabajo colaborativo?
+
+En este proyecto el CSS dejó de ser un solo archivo grande y se organizó en tres carpetas: `base/` (reset y estilos del body), `layout/` (header, contenedor, main y footer) y `components/` (tarjeta, botones y menú lateral). El archivo `estilos.css` quedó únicamente con los `@import` y las variables de `:root`, que funciona como un índice que conecta todos los módulos.
+
+Esta división facilita el trabajo en equipo porque cada integrante puede encargarse de un componente distinto sin modificar el mismo archivo que sus compañeros. Al usar Git, esto reduce los conflictos al unir ramas, ya que los cambios quedan en archivos separados. También ayuda a encontrar errores con más rapidez: si algo falla en los botones, solo se revisa `botones.css` y no cientos de líneas mezcladas. Además, cada componente queda independiente, por lo que se puede reutilizar en otro proyecto copiando su archivo, y el código resulta más fácil de leer y de mantener.
+
+### 3. ¿Cómo evita BEM la guerra de especificidad (cascada) al mantener un peso plano?
+
+La especificidad es el peso que el navegador le asigna a cada selector para decidir qué regla se aplica cuando dos estilos entran en conflicto. Con selectores anidados como `.producto h2` o `aside a:hover`, el peso aumenta, y para sobrescribir esos estilos después hay que escribir selectores aún más pesados o recurrir a `!important`. Así se genera la "guerra de especificidad", donde cada cambio obliga a escribir una regla más fuerte que la anterior y el código se vuelve difícil de controlar.
+
+BEM resuelve este problema porque cada elemento tiene su propia clase única y se estiliza solo con ella (por ejemplo `.card__title`). Todas las reglas tienen el mismo peso, una sola clase equivale a 10, sin importar en qué parte del HTML se encuentren. Como el peso es plano, el comportamiento es predecible: si dos reglas tienen el mismo peso, gana la que está más abajo en el código. Para crear una variante no hace falta escribir un selector más fuerte, basta con agregar un modificador como `.btn--secundario`. Además, los nombres son únicos (`card__title` nunca se confunde con `sidebar__title`), así que los estilos de un componente no afectan a otro por accidente.
+
+Esto se comprobó en DevTools, en el panel de estilos, donde los selectores como `.card__title` muestran una especificidad de (0,1,0), es decir, peso 10.

@@ -1,22 +1,43 @@
-.btn-comprar {
+/* ---------- Bloque ---------- */
+.btn {
     display: block;
     text-align: center;
     margin-top: var(--espaciado-medio);
     padding: 10px;
     background-color: var(--color-secundario);
+    border: 2px solid var(--color-secundario);
     color: var(--color-texto-claro);
     font-weight: 600;
-    border-radius: 8px;
-    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
-    transition: background-color 0.2s, transform 0.1s, box-shadow 0.1s;
+    border-radius: var(--radio-medio);
+    box-shadow: var(--sombra-boton);
+    transition: background-color 0.2s, color 0.2s, transform 0.1s, box-shadow 0.1s;
 }
 
-.btn-comprar:hover { background-color: var(--color-primario); }
+.btn:hover { background-color: var(--color-primario); }
 
-.btn-comprar:active {
+.btn:active {
     transform: translateY(3px);
-    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: var(--sombra-boton-presionado);
 }
 
-.btn-destacado { background-color: var(--color-acento); }
-.btn-destacado:hover { background-color: var(--color-texto); }
+/* ---------- Modificadores ---------- */
+.btn--destacado {
+    background-color: var(--color-acento);
+    border-color: var(--color-acento);
+}
+
+.btn--destacado:hover {
+    background-color: var(--color-texto);
+    border-color: var(--color-texto);
+}
+
+.btn--secundario {
+    background-color: transparent;
+    color: var(--color-secundario);
+}
+
+
+.btn--secundario:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-texto-claro);
+}
