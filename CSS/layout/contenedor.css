@@ -1,8 +1,8 @@
-.contenedor {
+.layout {
     display: flex;
     align-items: flex-start;
 }
 
 @media (max-width: 700px) {
-    .contenedor { flex-direction: column; }
+    .layout { flex-direction: column; }
 }

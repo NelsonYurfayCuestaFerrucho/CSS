@@ -11,86 +11,90 @@
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Productos</a></li>
-                <li><a href="#">Ofertas</a></li>
-                <li><a href="#">Contacto</a></li>
+    <header class="header">
+        <nav class="header__nav">
+            <ul class="header__list">
+                <li class="header__item"><a href="#" class="header__link">Inicio</a></li>
+                <li class="header__item"><a href="#" class="header__link">Productos</a></li>
+                <li class="header__item"><a href="#" class="header__link">Ofertas</a></li>
+                <li class="header__item"><a href="#" class="header__link">Contacto</a></li>
             </ul>
         </nav>
     </header>
 
-    <div class="contenedor">
-        <aside>
-            <h2>Categorías</h2>
-            <ul>
-                <li><a href="#">Tecnología</a></li>
-                <li><a href="#">Ropa</a></li>
-                <li><a href="#">Hogar</a></li>
-                <li><a href="#">Deportes</a></li>
+    <div class="layout">
+        <aside class="sidebar">
+            <h2 class="sidebar__title">Categorías</h2>
+            <ul class="sidebar__list">
+                <li class="sidebar__item"><a href="#" class="sidebar__link">Tecnología</a></li>
+                <li class="sidebar__item"><a href="#" class="sidebar__link">Ropa</a></li>
+                <li class="sidebar__item"><a href="#" class="sidebar__link">Hogar</a></li>
+                <li class="sidebar__item"><a href="#" class="sidebar__link">Deportes</a></li>
             </ul>
         </aside>
 
-        <main>
-    <section>
-        <article>
-            <h2>Audífonos Bluetooth</h2>
-            <p>Categoría: Tecnología</p>
-            <p>Audífonos inalámbricos con micrófono y cancelación de ruido.</p>
-            <p>Marca: SonicPro</p>
-            <p>Color: Negro</p>
-            <p>Garantía: 6 meses</p>
-            <p>Disponibles: 15 unidades</p>
-            <p>Precio: $50.000</p>
-            <a href="#" class="btn-comprar btn-destacado">Comprar</a>
-        </article>
+        <main class="main">
+            <section class="catalog">
+                <article class="card card--destacada">
+                    <img class="card__image" src="img/audifonos.jpg" alt="Audífonos Bluetooth">
+                    <h2 class="card__title">Audífonos Bluetooth</h2>
+                    <p class="card__category">Categoría: Tecnología</p>
+                    <p class="card__description">Audífonos inalámbricos con micrófono y cancelación de ruido.</p>
+                    <p class="card__detail">Marca: SonicPro</p>
+                    <p class="card__detail">Color: Negro</p>
+                    <p class="card__detail">Garantía: 6 meses</p>
+                    <p class="card__detail">Disponibles: 15 unidades</p>
+                    <p class="card__price">Precio: $50.000</p>
+                    <a href="#" class="btn btn--destacado">Comprar</a>
+                </article>
 
-        <article>
-            <h2>Chaqueta Deportiva</h2>
-            <p>Categoría: Ropa</p>
-            <p>Chaqueta ligera e impermeable, ideal para clima frío o lluvia.</p>
-            <p>Marca: UrbanFit</p>
-            <p>Tallas: S, M, L, XL</p>
-            <p>Color: Azul oscuro</p>
-            <p>Disponibles: 8 unidades</p>
-            <p>Precio: $75.000</p>
-            <a href="#" class="btn-comprar">Comprar</a>
-        </article>
+                <article class="card card--nuevo">
+                    <img class="card__image" src="img/chaqueta.jpg" alt="Chaqueta Deportiva">
+                    <h2 class="card__title">Chaqueta Deportiva</h2>
+                    <p class="card__category">Categoría: Ropa</p>
+                    <p class="card__description">Chaqueta ligera e impermeable, ideal para clima frío o lluvia.</p>
+                    <p class="card__detail">Marca: UrbanFit</p>
+                    <p class="card__detail">Tallas: S, M, L, XL</p>
+                    <p class="card__detail">Color: Azul oscuro</p>
+                    <p class="card__detail">Disponibles: 8 unidades</p>
+                    <p class="card__price">Precio: $75.000</p>
+                    <a href="#" class="btn">Comprar</a>
+                </article>
 
-        <article>
-            <h2>Juego de Sábanas</h2>
-            <p>Categoría: Hogar</p>
-            <p>Juego de sábanas de algodón suave, incluye 2 fundas de almohada.</p>
-            <p>Marca: CasaConfort</p>
-            <p>Tamaño: Doble</p>
-            <p>Color: Blanco</p>
-            <p>Disponibles: 20 unidades</p>
-            <p>Precio: $120.000</p>
-            <a href="#" class="btn-comprar">Comprar</a>
-        </article>
+                <article class="card">
+                    <img class="card__image" src="img/sabanas.jpg" alt="Juego de Sábanas">
+                    <h2 class="card__title">Juego de Sábanas</h2>
+                    <p class="card__category">Categoría: Hogar</p>
+                    <p class="card__description">Juego de sábanas de algodón suave, incluye 2 fundas de almohada.</p>
+                    <p class="card__detail">Marca: CasaConfort</p>
+                    <p class="card__detail">Tamaño: Doble</p>
+                    <p class="card__detail">Color: Blanco</p>
+                    <p class="card__detail">Disponibles: 20 unidades</p>
+                    <p class="card__price">Precio: $120.000</p>
+                    <a href="#" class="btn btn--secundario">Comprar</a>
+                </article>
 
-        <article>
-            <h2>Balón de Fútbol</h2>
-            <p>Categoría: Deportes</p>
-            <p>Balón cosido a máquina, resistente para cancha de césped o sintética.</p>
-            <p>Marca: GolMax</p>
-            <p>Tamaño: No. 5</p>
-            <p>Color: Blanco y negro</p>
-            <p>Precio: $30.000</p>
-            <a href="#" class="btn-comprar">Comprar</a>
-        </article>
-    </section>
-</main>
+                <article class="card">
+                    <img class="card__image" src="img/balon.avif" alt="Balón de Fútbol">
+                    <h2 class="card__title">Balón de Fútbol</h2>
+                    <p class="card__category">Categoría: Deportes</p>
+                    <p class="card__description">Balón cosido a máquina, resistente para cancha de césped o sintética.</p>
+                    <p class="card__detail">Marca: GolMax</p>
+                    <p class="card__detail">Tamaño: No. 5</p>
+                    <p class="card__detail">Color: Blanco y negro</p>
+                    <p class="card__price">Precio: $30.000</p>
+                    <a href="#" class="btn btn--secundario">Comprar</a>
+                </article>
+            </section>
+        </main>
     </div>
 
-    <footer>
-        <p>&copy; 2026 Mi Tienda. Todos los derechos reservados.</p>
-        <ul>
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">Instagram</a></li>
-            <li><a href="#">X</a></li>
+    <footer class="footer">
+        <p class="footer__text">&copy; 2026 Mi Tienda. Todos los derechos reservados.</p>
+        <ul class="footer__list">
+            <li class="footer__item"><a href="#" class="footer__link">Facebook</a></li>
+            <li class="footer__item"><a href="#" class="footer__link">Instagram</a></li>
+            <li class="footer__item"><a href="#" class="footer__link">X</a></li>
         </ul>
     </footer>
 </body>
