@@ -1,0 +1,15 @@
+footer {
+    background-color: var(--color-fondo-footer);
+    text-align: center;
+    padding: var(--espaciado-grande);
+}
+
+footer li {
+    display: inline-block;
+    margin: 0 var(--espaciado-medio);
+}
+
+footer a {
+    color: var(--color-acento);
+    font-weight: 600;
+}

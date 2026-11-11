@@ -1,0 +1,5 @@
+body {
+    font-family: var(--fuente-principal);
+    color: var(--color-texto);
+    margin: 0;
+}

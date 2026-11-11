@@ -1,0 +1,6 @@
+main {
+    background-color: var(--color-fondo-main);
+    flex: 1;
+    padding: var(--espaciado-grande);
+    min-height: 100vh;
+}

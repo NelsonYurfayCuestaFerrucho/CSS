@@ -1,0 +1,8 @@
+.contenedor {
+    display: flex;
+    align-items: flex-start;
+}
+
+@media (max-width: 700px) {
+    .contenedor { flex-direction: column; }
+}
