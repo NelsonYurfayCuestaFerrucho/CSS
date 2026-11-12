@@ -4,6 +4,9 @@ aside {
     flex-shrink: 0;
     padding: var(--espaciado-grande);
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-grande);
 }
 
 aside h2 {

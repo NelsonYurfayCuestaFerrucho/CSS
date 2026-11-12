@@ -216,3 +216,29 @@ La especificidad es el peso que el navegador le asigna a cada selector para deci
 BEM resuelve este problema porque cada elemento tiene su propia clase única y se estiliza solo con ella (por ejemplo `.card__title`). Todas las reglas tienen el mismo peso, una sola clase equivale a 10, sin importar en qué parte del HTML se encuentren. Como el peso es plano, el comportamiento es predecible: si dos reglas tienen el mismo peso, gana la que está más abajo en el código. Para crear una variante no hace falta escribir un selector más fuerte, basta con agregar un modificador como `.btn--secundario`. Además, los nombres son únicos (`card__title` nunca se confunde con `sidebar__title`), así que los estilos de un componente no afectan a otro por accidente.
 
 Esto se comprobó en DevTools, en el panel de estilos, donde los selectores como `.card__title` muestran una especificidad de (0,1,0), es decir, peso 10.
+
+# Hallazgos: Arquitectura Total con Flexbox
+
+### 1. La importancia de `min-height: 100vh` y `flex-direction: column` en el contenedor global
+
+Al comenzar la maqueta, el pie de página quedaba pegado justo debajo del último elemento del contenido. Esto funcionaba bien cuando había muchos productos, pero si la página tenía poco contenido, el footer subía y debajo quedaba un espacio vacío que le restaba profesionalismo al diseño.
+
+La solución fue convertir el contenedor global `.app-layout` en un contenedor flex con dirección de columna. De esta manera, el header, el contenedor central y el footer dejan de comportarse como bloques sueltos y pasan a ser hijos de una misma columna que se puede controlar. Al agregarle `min-height: 100vh`, esa columna siempre mide como mínimo el alto completo de la pantalla. Luego, aplicando `flex: 1` a `.main-wrapper`, el contenedor central se encarga de absorber todo el espacio sobrante, y eso empuja el footer hasta el borde inferior de forma natural. Elegí `min-height` y no `height` porque, si el contenido crece más que la pantalla, la página simplemente se estira; con una altura fija, el contenido se desbordaría y se saldría del diseño.
+
+### 2. Cómo la propiedad `gap` reemplazó los márgenes laterales en los menús
+
+Antes de usar Flexbox, la separación entre los enlaces de los menús dependía de márgenes laterales en cada elemento `li`. Esa técnica tiene varios inconvenientes: el primer y el último elemento terminan con un margen sobrante en los extremos, lo que desalinea el menú, y si se quería cambiar la distancia entre enlaces había que modificar el valor en varios lugares del CSS.
+
+Con la propiedad `gap` aplicada directamente al `ul`, el espacio se genera únicamente entre un elemento y el siguiente, sin sobrantes en los bordes. Además, al usar `var(--espaciado-medio)` como valor, la distancia queda conectada con las Custom Properties, así que el header, el menú lateral y el footer comparten el mismo criterio de espaciado y todo cambia desde un solo punto. Como consecuencia, los `li` quedaron con `margin: 0` y el código se volvió más corto, limpio y fácil de mantener.
+
+### 3. La unión de BEM, Custom Properties y Flexbox en una tarjeta resistente a distintas longitudes de texto
+
+La tarjeta de producto fue donde mejor se notó cómo las tres herramientas se complementan entre sí.
+
+BEM me permitió nombrar cada parte de la tarjeta con clases claras y específicas, como `.card__description`, `.card__price-wrapper` y `.card__price-old`. Gracias a esto puedo darle estilo a un elemento concreto sin depender de su posición dentro del HTML. Antes usaba selectores como `p:first-of-type` y `p:last-of-type`, que funcionaban solo mientras la estructura no cambiara; en cuanto agregaba un elemento nuevo, los estilos se aplicaban al párrafo equivocado.
+
+Las Custom Properties centralizan los colores y los espaciados que se repiten en toda la tarjeta. Si decido cambiar un color o una distancia, modifico la variable una sola vez y todas las tarjetas se actualizan al mismo tiempo, lo que garantiza coherencia visual.
+
+Flexbox es lo que le da a la tarjeta su capacidad de adaptarse al contenido. Al aplicar `display: flex`, `flex-direction: column` y `height: 100%`, todas las tarjetas de una misma fila miden exactamente lo mismo, aunque unas tengan más texto que otras. Al darle `flex-grow: 1` a `.card__description`, ese bloque actúa como un resorte invisible: ocupa todo el espacio libre y empuja el precio y el botón de compra hacia el borde inferior, así que quedan alineados en todas las tarjetas sin importar si la descripción es corta o larga. Por último, un pequeño contenedor flex en `.card__price-wrapper`, con `justify-content: space-between` y `align-items: baseline`, coloca el precio de oferta junto al precio original tachado y los alinea sobre la misma línea base, aunque tengan tamaños de letra diferentes.
+
+El resultado es una tarjeta simétrica y resistente: puede recibir textos de cualquier longitud y mantiene siempre la misma estructura, con el botón abajo y los precios bien alineados.

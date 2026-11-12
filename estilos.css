@@ -29,3 +29,14 @@
     --espaciado-grande: 24px;
     --espaciado-menu: 100px;
 }
+
+.app-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-wrapper {
+    display: flex;
+    flex: 1;
+}

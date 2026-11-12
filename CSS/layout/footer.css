@@ -1,12 +1,25 @@
 footer {
     background-color: var(--color-fondo-footer);
-    text-align: center;
     padding: var(--espaciado-grande);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer ul {
+    display: flex;
+    gap: var(--espaciado-medio);
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 footer li {
-    display: inline-block;
-    margin: 0 var(--espaciado-medio);
+    margin: 0;
 }
 
 footer a {

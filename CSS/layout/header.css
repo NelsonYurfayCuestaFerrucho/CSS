@@ -1,20 +1,26 @@
 header {
     background-color: var(--color-fondo-header);
-    background-image: url("../../img/img1.png"); /* ojo: ruta ajustada porque ahora está dentro de css/ */
+    background-image: url("../../img/img1.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     padding: var(--espaciado-pequeno) var(--espaciado-grande);
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     min-height: 190px;
+}
+
+.header__logo {
+    color: var(--color-texto-claro);
+    font-weight: 600;
+    font-size: 1.5rem;
 }
 
 header nav ul {
     display: flex;
     justify-content: center;
-    gap: var(--espaciado-grande);
+    gap: var(--espaciado-medio); /* antes: --espaciado-grande */
     margin: 0;
 }
 
@@ -29,3 +35,4 @@ header nav a {
 }
 
 header nav a:hover { border-bottom-color: var(--color-primario); }
+

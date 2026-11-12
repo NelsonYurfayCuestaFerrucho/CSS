@@ -13,6 +13,7 @@ article {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    height: 100%;
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
@@ -31,6 +32,10 @@ article p {
     font-size: 0.9rem;
 }
 
+.card__description {
+    flex-grow: 1;
+}
+
 article p:first-of-type {
     align-self: flex-start;
     background-color: var(--color-secundario);
@@ -40,12 +45,26 @@ article p:first-of-type {
     font-size: 0.75rem;
 }
 
-article p:last-of-type {
+/* Micro-flexbox del área de precios */
+.card__price-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-top: var(--espaciado-medio);
+}
+
+/* Precio de oferta (antes: article p:last-of-type) */
+.card__price {
     font-size: 1.4rem;
     font-weight: 600;
     color: var(--color-acento);
-    margin-top: auto;
-    padding-top: var(--espaciado-medio);
+}
+
+/* Precio original tachado */
+.card__price-old {
+    font-size: 0.9rem;
+    text-decoration: line-through;
+    opacity: 0.6;
 }
 
 article::after {
